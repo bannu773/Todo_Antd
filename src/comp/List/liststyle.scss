@@ -1,0 +1,13 @@
+.list_item{
+    background-color: rgb(243, 243, 243);
+    border-radius: 10px;
+    
+    .list_cont{
+        display: flex;
+        justify-content:  space-between;
+        align-items: center;
+        margin-left: 10px;
+        translate: -10px 0px;
+    }
+    
+}

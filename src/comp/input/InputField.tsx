@@ -3,6 +3,8 @@ import { Flex, Input, Button } from 'antd';
 
 import { PlusOutlined } from '@ant-design/icons';
 import { Todo } from '../model/model';
+import { addTask } from '../store/TodoList';
+import { useAppDispatch } from '../store/store';
 
 type InputProps = {
     todo: string
@@ -15,29 +17,29 @@ type InputProps = {
 const InputField = ({ todo, setTaskInput, todos, setTodos }: InputProps) => {
 
     const [loading, setLoading] = useState(false);
+    const  dispatch = useAppDispatch();
 
+    // const addTask = (e: React.FormEvent) => {
+    //     e.preventDefault();
+    //     setLoading(true);
+    //     let task = todo;
+    //     const tas = {
+    //         id: Date.now(),
+    //         todo: task,
+    //         isdone: false
+    //     }
 
-    const addTask = (e: React.FormEvent) => {
-        e.preventDefault();
-        setLoading(true);
-        let task = todo;
-        const tas = {
-            id: Date.now(),
-            todo: task,
-            isdone: false
-        }
+    //     if (todo) {
 
-        if (todo) {
+    //         setTodos([...todos, tas]);
 
-            setTodos([...todos, tas]);
+    //         setTaskInput(""); // Clear the todo value here
+    //     }
 
-            setTaskInput(""); // Clear the todo value here
-        }
-
-        setTimeout(() => {
-            setLoading(false);
-        }, 1000);
-    }
+    //     setTimeout(() => {
+    //         setLoading(false);
+    //     }, 1000);
+    // }
 
     
     
@@ -50,7 +52,7 @@ const InputField = ({ todo, setTaskInput, todos, setTodos }: InputProps) => {
                 type="primary"
                 icon={<PlusOutlined />}
                 loading={loading}
-                onClick={(e) => addTask(e)}
+                onClick={() => {dispatch(addTask({todo : todo}));setTaskInput("")}}
             />
             </>
     )
